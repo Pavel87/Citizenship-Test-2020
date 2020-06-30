@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F53535</color>
+    <color name="colorPrimaryVariant">#CF2121</color>
+    <color name="colorOnPrimary">#DEDEDE</color>
+
+
+    <color name="fail_bg">#26F41818</color>
+    <color name="pass_bg">#2612FD73</color>
+
+    <color name="text_main">#131313</color>
+    <color name="textLabel">#99131313</color>
+
+
+</resources>
