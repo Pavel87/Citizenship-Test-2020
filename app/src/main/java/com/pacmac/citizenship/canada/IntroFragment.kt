@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,7 +15,6 @@ import com.pacmac.citizenship.canada.model.QuestionObj
 class IntroFragment : Fragment() {
 
     var isClicked: Boolean = false;
-
     var callback: FragmentSelector? = null
 
 
@@ -29,8 +29,8 @@ class IntroFragment : Fragment() {
     private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.intro_fragment, container, false)
     }
@@ -62,14 +62,14 @@ class IntroFragment : Fragment() {
                 // show progress
                 view.findViewById<ProgressBar>(R.id.startProgress).visibility = View.VISIBLE
                 viewModel.getShortQuestionList(context!!.applicationContext)
-                    .observe(activity!!, loadedQuestionObserver)
+                        .observe(activity!!, loadedQuestionObserver)
 
             }
         }
 
-
+        view.findViewById<ImageView>(R.id.about).setOnClickListener {
+            callback!!.onInfoRequested()
+        }
     }
-
-
 
 }

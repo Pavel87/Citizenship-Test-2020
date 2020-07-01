@@ -4,4 +4,5 @@ interface FragmentSelector {
     fun onStartTest()
     fun onTestComplete()
     fun onAnswersRequested()
+    fun onInfoRequested()
 }

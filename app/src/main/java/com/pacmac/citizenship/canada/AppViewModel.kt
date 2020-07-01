@@ -19,7 +19,6 @@ class AppViewModel : ViewModel() {
 
 
     var correctAnswers = 0;
-
     val allQuestionList: MutableLiveData<MutableList<QuestionObj>> by lazy {
         MutableLiveData<MutableList<QuestionObj>>()
     }

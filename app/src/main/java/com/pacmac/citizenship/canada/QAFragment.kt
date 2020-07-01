@@ -33,7 +33,7 @@ class QAFragment : Fragment() {
 
     val mainHandler = Handler(Looper.getMainLooper())
     var time = Constants.TEST_TIME
-    val WARN_TIME = 2 * 60
+    val WARN_TIME = Constants.WARN_TIME
     private lateinit var timerRunnable: Runnable
 
     var exitTime: Long = -1;
@@ -48,8 +48,8 @@ class QAFragment : Fragment() {
     private var questionNumber = 1
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         viewModel.correctAnswers = 0;
@@ -78,20 +78,20 @@ class QAFragment : Fragment() {
                 viewModel.correctAnswers++
             }
 
-            if (questionNumber < 20) {
+            if (questionNumber < Constants.QUESTION_COUNT) {
                 questionNumber++
 
                 showQuestion(
-                        view,
-                        viewModel.getQuestionList()?.get(questionNumber - 1),
-                        questionNumber
+                    view,
+                    viewModel.getQuestionList()?.get(questionNumber - 1),
+                    questionNumber
                 )
 
             } else {
                 callback!!.onTestComplete()
             }
 
-            if (questionNumber == 20) {
+            if (questionNumber == Constants.QUESTION_COUNT) {
                 submitButton.text = "Submit"
             }
         }
@@ -100,7 +100,8 @@ class QAFragment : Fragment() {
         timerRunnable = Runnable {
             view.findViewById<TextView>(R.id.timer).text = Utils.formatTimeLimit(time)
             if (time < WARN_TIME) {
-                view.findViewById<View>(R.id.timerHighlighter).setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
+                view.findViewById<View>(R.id.timerHighlighter)
+                    .setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
             }
 
             if (time > 0) {

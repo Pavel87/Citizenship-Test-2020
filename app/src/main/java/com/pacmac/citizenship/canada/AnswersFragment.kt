@@ -20,7 +20,6 @@ class AnswersFragment : Fragment() {
 
     private lateinit var viewModel: AppViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

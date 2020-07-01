@@ -10,15 +10,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
 import com.pacmac.citizenship.canada.model.QuestionObj
 import com.pacmac.citizenship.canada.util.Constants
 
 class ResultFragment : Fragment() {
 
-    private lateinit var mInterstitialAd: InterstitialAd
-    private var adShown = false
     private var isClicked: Boolean = false;
     private var callback: FragmentSelector? = null
 
@@ -37,9 +33,6 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mInterstitialAd = InterstitialAd(context)
-        mInterstitialAd.adUnitId = getString(R.string.interstitial_id_1)
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
@@ -75,10 +68,6 @@ class ResultFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.showAnswerBtn).setOnClickListener {
-            if (mInterstitialAd.isLoaded && !adShown) {
-                mInterstitialAd.show()
-                adShown = true
-            }
             callback!!.onAnswersRequested()
         }
     }

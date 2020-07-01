@@ -26,15 +26,17 @@ class Utils {
             }
         }
 
+        var latestJSONVersion = Constants.JSON_VERSION
+
         fun createListOfQuestions(context: Context): MutableList<QuestionObj> {
 
             val preferences: SharedPreferences =
                 context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
-            val lastVersion: Int =
+            latestJSONVersion =
                 preferences.getInt(Constants.LAST_QUESTIONS_VERSION_PREF, Constants.JSON_VERSION)
 
             val jsonArray =
-                JSONArray(loadJSONArrayString(context, lastVersion > Constants.JSON_VERSION))
+                JSONArray(loadJSONArrayString(context, latestJSONVersion > Constants.JSON_VERSION))
             val list: MutableList<QuestionObj> = ArrayList()
 
 
