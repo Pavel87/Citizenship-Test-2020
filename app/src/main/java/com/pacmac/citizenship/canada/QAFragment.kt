@@ -3,6 +3,7 @@ package com.pacmac.citizenship.canada
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.pacmac.citizenship.canada.model.Answer
 import com.pacmac.citizenship.canada.model.QuestionObj
+import com.pacmac.citizenship.canada.util.Constants
 import com.pacmac.citizenship.canada.util.Utils
 
 /**
@@ -30,9 +32,11 @@ class QAFragment : Fragment() {
     var callback: FragmentSelector? = null
 
     val mainHandler = Handler(Looper.getMainLooper())
-    var time = 30 * 60
+    var time = Constants.TEST_TIME
     val WARN_TIME = 2 * 60
     private lateinit var timerRunnable: Runnable
+
+    var exitTime: Long = -1;
 
 
     fun setFragmentSelector(callback: FragmentSelector) {
@@ -139,11 +143,21 @@ class QAFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        if (exitTime > 0) {
+            val diff = (SystemClock.elapsedRealtime() - exitTime).toInt() / 1000
+            if ((time - diff) > 0 && (time - diff) < Constants.TEST_TIME) {
+                time -= diff
+            } else if (time - diff < 1) {
+                time = 1
+            }
+            exitTime = -1
+        }
         mainHandler.post(timerRunnable)
     }
 
     override fun onPause() {
         super.onPause()
         mainHandler.removeCallbacks(timerRunnable)
+        exitTime = SystemClock.elapsedRealtime()
     }
 }

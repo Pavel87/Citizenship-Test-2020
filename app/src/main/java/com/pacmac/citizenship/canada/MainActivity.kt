@@ -20,11 +20,14 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
         viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
         viewModel.loadQuestionList(applicationContext)
 
+//        Thread(Runnable {
+        viewModel.downloadLatestQuestions(applicationContext)
+//        }).start()
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
-                    .commit()
+                .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
+                .commit()
         }
     }
 
@@ -40,20 +43,20 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
 
     override fun onStartTest() {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
-                .commit()
+            .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
+            .commit()
     }
 
     override fun onTestComplete() {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
-                .commit()
+            .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
+            .commit()
     }
 
     override fun onAnswersRequested() {
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
-                .commit()
+            .add(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
+            .commit()
     }
 
     override fun onBackPressed() {
@@ -63,8 +66,8 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
             onTestComplete()
         } else {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
-                    .commit()
+                .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
+                .commit()
         }
     }
 

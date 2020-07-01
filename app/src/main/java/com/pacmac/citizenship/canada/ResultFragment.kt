@@ -18,8 +18,10 @@ import com.pacmac.citizenship.canada.util.Constants
 class ResultFragment : Fragment() {
 
     private lateinit var mInterstitialAd: InterstitialAd
-    var isClicked: Boolean = false;
-    var callback: FragmentSelector? = null
+    private var adShown = false
+    private var isClicked: Boolean = false;
+    private var callback: FragmentSelector? = null
+
 
     fun setFragmentSelector(callback: FragmentSelector) {
         this.callback = callback
@@ -73,8 +75,9 @@ class ResultFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.showAnswerBtn).setOnClickListener {
-            if (mInterstitialAd.isLoaded) {
+            if (mInterstitialAd.isLoaded && !adShown) {
                 mInterstitialAd.show()
+                adShown = true
             }
             callback!!.onAnswersRequested()
         }
