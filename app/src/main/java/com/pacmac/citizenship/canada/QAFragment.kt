@@ -48,8 +48,8 @@ class QAFragment : Fragment() {
     private var questionNumber = 1
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         viewModel.correctAnswers = 0;
@@ -82,9 +82,9 @@ class QAFragment : Fragment() {
                 questionNumber++
 
                 showQuestion(
-                    view,
-                    viewModel.getQuestionList()?.get(questionNumber - 1),
-                    questionNumber
+                        view,
+                        viewModel.getQuestionList()?.get(questionNumber - 1),
+                        questionNumber
                 )
 
             } else {
@@ -100,8 +100,7 @@ class QAFragment : Fragment() {
         timerRunnable = Runnable {
             view.findViewById<TextView>(R.id.timer).text = Utils.formatTimeLimit(time)
             if (time < WARN_TIME) {
-                view.findViewById<TextView>(R.id.timer)
-                    .setTextColor(resources.getColor(R.color.colorPrimary))
+                view.findViewById<View>(R.id.timerHighlighter).setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
             }
 
             if (time > 0) {

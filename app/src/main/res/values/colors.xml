@@ -11,5 +11,7 @@
     <color name="text_main">#131313</color>
     <color name="textLabel">#99131313</color>
 
+    <color name="good_time">#E62C9156</color>
+    <color name="bad_time">@color/colorPrimaryVariant</color>
 
 </resources>
