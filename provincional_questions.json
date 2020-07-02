@@ -1,0 +1,674 @@
+[
+  {
+    "question": "What is the name of the Lieutenant-Governor of Quebec?",
+    "a": "Honourable Pierre Duchesne",
+    "b": "Honourable Jean-Louis Roux",
+    "c": "Honourable Martial Asselin",
+    "d": "Honourable J. Michel Doyon",
+    "answer": "d"
+  },
+  {
+    "question": "What is the capital city of Alberta?",
+    "a": "Medicine Hat.",
+    "b": "Red Deer.",
+    "c": "Calgary.",
+    "d": "Edmonton.",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Alberta?",
+    "a": "Rachel Notley.",
+    "b": "Brian Jean.",
+    "c": "Heather Forsyth.",
+    "d": "Jim Prentice.",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Alberta?",
+    "a": "Donald S. Ethell.",
+    "b": "Lois Mitchell",
+    "c": "Adrienne Clarkson.",
+    "d": "David Johnston.",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the Premier of Alberta?",
+    "a": "Premier Rachel Notley.",
+    "b": "Premier Jason Kenney.",
+    "c": "Premier Jim Prentice.",
+    "d": "Premier Stephen Harper",
+    "answer": "b"
+  },
+  {
+    "question": "Which political party is in power in Alberta?",
+    "a": "New Democratic Party.",
+    "b": "Liberal Party.",
+    "c": "Green Party.",
+    "d": "United Conservative Party",
+    "answer": "d"
+  },
+  {
+    "question": "Which three natural resources are important to Alberta’s economy today?",
+    "a": "Oil, agriculture, and forestry.",
+    "b": "Oil, tourism, and fishing.",
+    "c": "Oil, coal, and hydroelectricity.",
+    "d": "Oil, coal, and forestry.",
+    "answer": "a"
+  },
+  {
+    "question": "Name the federal electoral districts in Richmond, British Columbia.",
+    "a": "Richmond has two federal electoral districts: Richmond North and Richmond South",
+    "b": "Richmond has two federal electoral districts: Richmond East and Richmond West",
+    "c": "Richmond has two federal electoral districts: Richmond and Richmond South.",
+    "d": "Richmond has two federal electoral districts: Richmond Centre and Steveston-Richmond East",
+    "answer": "d"
+  },
+  {
+    "question": "Name the members of Parliament for Richmond, British Columbia and the parties they belong to (Richmond Centre, Steveston-Richmond East respectively).",
+    "a": "Alice Wong (Conservative), Kenny Chiu (Conservative)",
+    "b": "Joe Peschisolido (Liberal), Kerry-Lynne Findlay (Conservative)",
+    "c": "John Cummings (Conservative), Christie Clark (Liberal)",
+    "d": "Greg Halsey-Brandt (Liberal), Geoff Plant (Liberal)",
+    "answer": "a"
+  },
+  {
+    "question": "Name the Members of the Legislative Assembly for Richmond, British Columbia and the parties they belong to (Richmond North Centre, Richmond South Centre, Richmond-Steveston, and Richmond-Queensborough respectively).",
+    "a": "Rob Howard (Richmond North Centre), Linda Reid (Richmond South Centre), John Cummins (Richmond-Steveston), and Malcolm Brodie (Richmond-Queensborough)",
+    "b": "John Cummins (Richmond North Centre), Linda Reid (Richmond South Centre), John Yap (Richmond-Steveston), and Greg Halseybrandt (Richmond-Queensborough)",
+    "c": "Olga Ilich (Richmond North Centre), Rob Howard (Richmond South Centre), Jas Johal (Richmond-Steveston), and John Yap (Richmond-Queensborough)",
+    "d": "Teresa Wat (Richmond North Centre), Linda Reid (Richmond South Centre), John Yap (Richmond-Steveston), Jas Johal (Richmond-Queensborough).",
+    "answer": "d"
+  },
+  {
+    "question": "Name three city councillors for Richmond, British Columbia.",
+    "a": "Malcolm Brodie, Derek Dang and Ernie Novakowski",
+    "b": "Lyn Greenhill, Kiichi Kumagai and Lily von Hendron",
+    "c": "Harold Steves, Chak Au and Carol Day",
+    "d": "Ken Johnston, Bill McNulty and Lee Bailey",
+    "answer": "c"
+  },
+  {
+    "question": "What is the capital city of British Columbia?",
+    "a": "Vancouver.",
+    "b": "Prince George.",
+    "c": "Victoria.",
+    "d": "New Westminster.",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in British Columbia?",
+    "a": "Adam Olsen",
+    "b": "Adrian Dix",
+    "c": "John Horgan",
+    "d": "Andrew Wilkinson",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of British Columbia?",
+    "a": "David Lam",
+    "b": "Janet Austin",
+    "c": "Adrienne Clarkson",
+    "d": "Judith Guichon",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the Mayor of Richmond, British Columbia?",
+    "a": "Mayor Richard Lee",
+    "b": "Mayor Bill McNulty",
+    "c": "Mayor Linda McPhail",
+    "d": "Mayor Malcolm Brodie",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Premier of British Columbia?",
+    "a": "Premier Adrian Dix",
+    "b": "Premier Gordon Campbell",
+    "c": "Premier John Horgan",
+    "d": "Premier Christy Clark",
+    "answer": "c"
+  },
+  {
+    "question": "Which political party is in power in British Columbia?",
+    "a": "New Democratic Party",
+    "b": "Liberal Party",
+    "c": "Social Credit Party",
+    "d": "Green Party",
+    "answer": "a"
+  },
+  {
+    "question": "Which three natural resources are important to British Columbia’s economy today?",
+    "a": "Forests, water and grain crops.",
+    "b": "Forests, fish and water.",
+    "c": "Fish, oil and water.",
+    "d": "Coal, water and shipbuilding.",
+    "answer": "b"
+  },
+  {
+    "question": "Why is British Columbia known as Canada’s Pacific Gateway?",
+    "a": "Most new imigrants arrive at Vancouver International Airport.",
+    "b": "British Columbia is the closest province to the Far East.",
+    "c": "Billions of dollars in trade goods are handled through the Port of Vancouver.",
+    "d": "British Columbia borders the Pacific Ocean.",
+    "answer": "c"
+  },
+  {
+    "question": "What is the capital city of Manitoba?",
+    "a": "Winnipeg",
+    "b": "Grand Rapids",
+    "c": "Portage la Prairie",
+    "d": "Brandon",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Manitoba?",
+    "a": "Rana Bokhari",
+    "b": "James Beddome",
+    "c": "Wab Kinew",
+    "d": "Brian Pallister",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Manitoba?",
+    "a": "Honourable John Harvard",
+    "b": "Honourable Peter Liba",
+    "c": "Honourable Philip Lee",
+    "d": "Honourable Janice Filmon",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Premier of Manitoba?",
+    "a": "Premier Gary Doer",
+    "b": "Premier Greg Selinger",
+    "c": "Premier Brian Pallister",
+    "d": "Premier Sterling Lyon",
+    "answer": "c"
+  },
+  {
+    "question": "What three industries are important to Manitoba’s economy today?",
+    "a": "Farming, mining and fishing",
+    "b": "Agriculture, mining and hydro-electric power generation",
+    "c": "Fishing, tourism and mining",
+    "d": "Forestry, fishing and energy",
+    "answer": "b"
+  },
+  {
+    "question": "Which political party is in power in Manitoba?",
+    "a": "Manitoba Party",
+    "b": "Liberals",
+    "c": "Progressive Conservative",
+    "d": "New Democrats",
+    "answer": "c"
+  },
+  {
+    "question": "What is the capital city of New Brunswick?",
+    "a": "Victoria",
+    "b": "Winnipeg",
+    "c": "Fredericton",
+    "d": "Montreal",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in New Brunswick?",
+    "a": "Victor Boudreau",
+    "b": "Brian Gallant",
+    "c": "Denis Landry",
+    "d": "David Alward",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of New Brunswick?",
+    "a": "Honourable Brenda Murphy",
+    "b": "Honourable Gilbert Finn",
+    "c": "Honourable Marilyn Trenholme Counsell",
+    "d": "Honourable Graydon Nicholas",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Premier of New Brunswick?",
+    "a": "Premier Bernard Lord",
+    "b": "Premier Blaine Higgs",
+    "c": "Premier David Alward",
+    "d": "Premier Brian Gallant",
+    "answer": "b"
+  },
+  {
+    "question": "What three industries are important to New Brunswick’s economy today?",
+    "a": "Forestry, hydro-electric power generation, oil",
+    "b": "Fisheries, oil, tourism",
+    "c": "Atlantic trade, fishing and oil",
+    "d": "Forestry, agriculture and mining",
+    "answer": "d"
+  },
+  {
+    "question": "Which political party is in power in New Brunswick?",
+    "a": "Liberals",
+    "b": "New Brunswick Party",
+    "c": "New Democrats",
+    "d": "Progressive Conservative",
+    "answer": "d"
+  },
+  {
+    "question": "What is the capital city of Newfoundland and Labrador?",
+    "a": "Charlottetown",
+    "b": "Chimney Tickle",
+    "c": "St. John's",
+    "d": "St. Pierre et Miquelon",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Newfoundland and Labrador?",
+    "a": "Kelvin Parsons",
+    "b": "Ches Crosbie",
+    "c": "Paul Davis",
+    "d": "Dwight Ball",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Newfoundland and Labrador?",
+    "a": "Honourable Frank F. Fagan",
+    "b": "Honourable Edward Roberts",
+    "c": "Honourable John Crosbie",
+    "d": "Honourable Judy May Foote",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Premier of Newfoundland and Labrador?",
+    "a": "Premier Dwight Ball",
+    "b": "Premier Paul Davis",
+    "c": "Premier Kathy Dunderdale",
+    "d": "Premier Tom Marshall",
+    "answer": "a"
+  },
+  {
+    "question": "What three industries are important to Newfoundland and Labrador’s economy today?",
+    "a": "Fisheries, oil and gas extraction",
+    "b": "Fisheries, tourism, forestry",
+    "c": "Shipbuilding, fisheries and mining",
+    "d": "Tourism, mining and forestry",
+    "answer": "a"
+  },
+  {
+    "question": "Which political party is in power in Newfoundland and Labrador?",
+    "a": "NFL Party",
+    "b": "New Democrats",
+    "c": "Liberal Party",
+    "d": "Progressive Conservative",
+    "answer": "c"
+  },
+  {
+    "question": "What is the capital City of Nova Scotia?",
+    "a": "Shearwater",
+    "b": "Halifax",
+    "c": "Dartmouth",
+    "d": "Devon",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Nova Scotia?",
+    "a": "Darrell Dexter",
+    "b": "John MacDonell",
+    "c": "Tim Houston",
+    "d": "Jamie Baillie",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Nova Scotia?",
+    "a": "Honourable John James Grant",
+    "b": "Honourable Myra Freeman",
+    "c": "Honourable Mayann Francis",
+    "d": "Honourable Arthur J. LeBlanc",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Premier of Nova Scotia?",
+    "a": "Premier Darrel Dexter",
+    "b": "Premier Stephen McNeil",
+    "c": "Premier John F. Hamm",
+    "d": "Premier Rodney MacDonald",
+    "answer": "b"
+  },
+  {
+    "question": "What three industries are important to Nova Scotia’s economy today?",
+    "a": "Fisheries, shipbuilding and forestry",
+    "b": "Forestry, mining and tourism",
+    "c": "Coal mining, forestry and agriculture",
+    "d": "Tourism, movies and shipbuilding",
+    "answer": "c"
+  },
+  {
+    "question": "Which political party is in power in Nova Scotia?",
+    "a": "New Democrats",
+    "b": "Progressive Conservative",
+    "c": "Liberal",
+    "d": "Nova Scotia Party",
+    "answer": "c"
+  },
+  {
+    "question": "What is the capital City of the Northwest Territories?",
+    "a": "Fort Simpson",
+    "b": "Hay River",
+    "c": "Fort Providence",
+    "d": "Yellowknife",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Commissioner of the Northwest Territories?",
+    "a": "Honourable Margaret Thom",
+    "b": "Honourable Tony Whitford",
+    "c": "Honourable Daniel L. Norris",
+    "d": "Honourable Glenna Hansen",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in the Northwest Territories?",
+    "a": "None",
+    "b": "George Braden",
+    "c": "Don Morin",
+    "d": "Nellie Cournoyea",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Premier of the Northwest Territories?",
+    "a": "Premier Bob McLeod",
+    "b": "Premier Caroline Cochrane",
+    "c": "Premier Joe Handley",
+    "d": "Premier Jim Antoine",
+    "answer": "b"
+  },
+  {
+    "question": "Which political party is in power in the Northwest Territories?",
+    "a": "Yukon Party",
+    "b": "Liberals",
+    "c": "Governed by consensus",
+    "d": "New Democrats",
+    "answer": "c"
+  },
+  {
+    "question": "What is the capital City of the Nunavut?",
+    "a": "Sinaa",
+    "b": "Iqaluit",
+    "c": "Nipisa",
+    "d": "Mivvik",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the Commissioner of Nunavut?",
+    "a": "Honourable Peter Irniq",
+    "b": "Honourable Ann Meekitjuk Hanson",
+    "c": "Honourable Eva Aariak",
+    "d": "Honourable Nellie Taptaqut Kusugak",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Nunavut?",
+    "a": "Don Morin",
+    "b": "Joe Handley",
+    "c": "None",
+    "d": "Eva Aariak",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Premier of Nunavut?",
+    "a": "Premier Paul Okalik",
+    "b": "Premier Floyd Roalnd",
+    "c": "Premier Joe Savikataaq",
+    "d": "Premier Peter Taptuna",
+    "answer": "c"
+  },
+  {
+    "question": "Which political party is in power in Nunavut?",
+    "a": "Progressive Conservative",
+    "b": "Liberal",
+    "c": "Nunavut Party",
+    "d": "Governed by consensus",
+    "answer": "d"
+  },
+  {
+    "question": "What is the capital city of Ontario?",
+    "a": "Kingston",
+    "b": "Ottawa",
+    "c": "Toronto",
+    "d": "London",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Ontario?",
+    "a": "Andrea Horwath",
+    "b": "Tim Hudak",
+    "c": "Patrick Brown",
+    "d": "Dalton McGuinty",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Ontario?",
+    "a": "James Bartleman",
+    "b": "Elizabeth Dowdeswell",
+    "c": "David C. Onley",
+    "d": "Belinda Stronach",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the Mayor of Ottawa, Ontario?",
+    "a": "Mayor Diane Deans",
+    "b": "Mayor Jim Watson",
+    "c": "Mayor Larry O'Brien",
+    "d": "Mayor Bob Chiarelli",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the Premier of Ontario?",
+    "a": "Premier Doug Ford",
+    "b": "Premier Jack Layton",
+    "c": "Premier Kathleen Wynne",
+    "d": "Premier Mike Harris",
+    "answer": "a"
+  },
+  {
+    "question": "What three industries are important to Ontario’s economy today?",
+    "a": "Mining, fishing, automobile manufacturing",
+    "b": "Mining, tourism, automobile manufacturing",
+    "c": "Farming, tourism, fishing",
+    "d": "Automobile manufacturing, tourism, fishing",
+    "answer": "b"
+  },
+  {
+    "question": "Which political party is in power in Ontario?",
+    "a": "Green Party",
+    "b": "Liberal Party",
+    "c": "Progressive Conservative Party",
+    "d": "New Democratic Party",
+    "answer": "c"
+  },
+  {
+    "question": "Which three are city councillors for Ottawa, Ontario?",
+    "a": "Gabrielle Roy, Peter Clark, Marc Godbout",
+    "b": "Diane Holmes, Belinda Stronach, Georges Bédard",
+    "c": "Jenna Sudds, Glen Gower, Diane Deans",
+    "d": "Yves Ducharme, Katherine Hobbs, Mauril Bélanger",
+    "answer": "c"
+  },
+  {
+    "question": "Which three are Members of Ontario’s Legislative Assembly?",
+    "a": "Brian Kilrea, Marlene Catterall, Tom Green",
+    "b": "Howard Hampton, Maurice Richard, Daniel Poliquin",
+    "c": "Daniel Lanois, Rosario Marchese, Diane Dufresne",
+    "d": "Rod Phillips, Todd Smith, Michael Coteau",
+    "answer": "d"
+  },
+  {
+    "question": "Which three are members of Parliament for Ottawa, Ontario?",
+    "a": "Joe Clark, Adrienne Clarkson, Mike Harris",
+    "b": "David McGuinty, Mona Fortier, Catherine McKenna",
+    "c": "John Manley, Bob Chiarelli, Charlotte Whitton",
+    "d": "Gilles Vigneault, Paul Dewar, Françoise Boivin",
+    "answer": "b"
+  },
+  {
+    "question": "What is the capital City of the Prince Edward Island?",
+    "a": "Cornwall",
+    "b": "Stratford",
+    "c": "Charlottetown",
+    "d": "Georgetown",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Prince Edward Island?",
+    "a": "Olive Crane",
+    "b": "Jamie Fox",
+    "c": "Steven Meyers",
+    "d": "Peter Bevan-Baker",
+    "answer": "d"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Prince Edward Island?",
+    "a": "Honourable Antoinette Perry",
+    "b": "Honourable H. Frank Lewis",
+    "c": "Honourable Barbara Oliver Hagerman",
+    "d": "Honourable Léonce Barnard",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Premier of Prince Edward Island?",
+    "a": "Premier Wade MacLauchlan",
+    "b": "Premier Dennis King",
+    "c": "Premier Pat Binns",
+    "d": "Premier Joe Ghiz",
+    "answer": "b"
+  },
+  {
+    "question": "Which political party is in power in Prince Edward Island?",
+    "a": "Progressive Conservative",
+    "b": "New Democrats",
+    "c": "Liberals",
+    "d": "Union Nationale",
+    "answer": "a"
+  },
+  {
+    "question": "What is the capital City of the Quebec?",
+    "a": "Beauport",
+    "b": "Quebec City",
+    "c": "Montreal",
+    "d": "Chicoutimi",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Quebec?",
+    "a": "Dominique Anglade",
+    "b": "Pierre Arcand",
+    "c": "Jean-Marc Fournie",
+    "d": "Philippe Couillard",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Premier of Quebec ?",
+    "a": "Premier Lucien Bouchard",
+    "b": "Premier Pauline Marois",
+    "c": "Premier Francois Legault",
+    "d": "Premier Philippe Couillard",
+    "answer": "c"
+  },
+  {
+    "question": "What three industries are important to Quebec’s economy today?",
+    "a": "Tourism, mining and forestry",
+    "b": "Pulp and paper, forestry and hydro-electric power",
+    "c": "Films, fishing and mining",
+    "d": "Forestry, shipping and tourism",
+    "answer": "b"
+  },
+  {
+    "question": "Which political party is in power in Quebec?",
+    "a": "Coalition Avenir Québec",
+    "b": "Parti libéral",
+    "c": "Parti Quebecois",
+    "d": "Union Nationale",
+    "answer": "a"
+  },
+  {
+    "question": "What is the capital city of Saskatchewan?",
+    "a": "Regina",
+    "b": "Avonlea",
+    "c": "Glenavon",
+    "d": "Fort Qu'Appelle",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Saskatchewan?",
+    "a": "Ryan Meili",
+    "b": "Nicole Sarauer",
+    "c": "John Nilson",
+    "d": "Cam Broten",
+    "answer": "a"
+  },
+  {
+    "question": "What is the name of the Lieutenant-Governor of Saskatchewan?",
+    "a": "Honourable Dr. Gordon L. Barnhart",
+    "b": "Honourable Vaughn Solomon Schofield",
+    "c": "Honourable Russ Mirasty",
+    "d": "Honourable Lynda Maureen Haverstock",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Premier of Saskatchewan?",
+    "a": "Premier Lorne Calvert",
+    "b": "Premier Brad Wall",
+    "c": "Premier Scott Moe",
+    "d": "Premier Len Taylor",
+    "answer": "c"
+  },
+  {
+    "question": "What three industries are important to Saskatchewan’s economy today?",
+    "a": "Forestry, films and tourism",
+    "b": "Fishing, mining and agriculture",
+    "c": "Mining, oil production and forestry",
+    "d": "Farming, mining and natural gas",
+    "answer": "d"
+  },
+  {
+    "question": "Which political party is in power in Saskatchewan?",
+    "a": "NDP",
+    "b": "Saskatchewan Party",
+    "c": "Progressive Conservative",
+    "d": "Social Credit",
+    "answer": "b"
+  },
+  {
+    "question": "What is the capital city of Yukon Territory?",
+    "a": "MacRae",
+    "b": "Crestview",
+    "c": "Whitehorse",
+    "d": "Riverdale",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Commissioner of Yukon Territory?",
+    "a": "Honourable Doug Phillips",
+    "b": "Honourable Angélique Bernard",
+    "c": "Honourable Jack Cable",
+    "d": "Honourable Douglas Bell",
+    "answer": "b"
+  },
+  {
+    "question": "What is the name of the leader of the Opposition in Yukon Territory?",
+    "a": "Trevor Harding",
+    "b": "Liz Hanson",
+    "c": "Stacey Hassard",
+    "d": "Arthur Mitchell",
+    "answer": "c"
+  },
+  {
+    "question": "What is the name of the Premier of Yukon Territory?",
+    "a": "Premier Dennis Fentie",
+    "b": "Premier Bob McLeod",
+    "c": "Premier Darrell Pasloski",
+    "d": "Premier Sandy Silver",
+    "answer": "d"
+  },
+  {
+    "question": "Which political party is in power in Yukon Territory?",
+    "a": "Progressive Conservatives",
+    "b": "New Democrats",
+    "c": "Liberal",
+    "d": "Yukon Party",
+    "answer": "c"
+  }
+]

@@ -123,7 +123,7 @@ class QAFragment : Fragment() {
     fun showQuestion(view: View, questionObj: QuestionObj?, questionNumber: Int) {
         view.findViewById<TextView>(R.id.questionNumber).text = "$questionNumber"
         view.findViewById<TextView>(R.id.question).text = questionObj?.question
-        view.findViewById<RadioButton>(R.id.correctAnswer).text = questionObj?.a
+        view.findViewById<RadioButton>(R.id.answer1).text = questionObj?.a
         view.findViewById<RadioButton>(R.id.answer2).text = questionObj?.b
         view.findViewById<RadioButton>(R.id.answer3).text = questionObj?.c
         view.findViewById<RadioButton>(R.id.answer4).text = questionObj?.d
@@ -132,7 +132,7 @@ class QAFragment : Fragment() {
 
     fun getAnswer(id: Int): Answer {
         when (id) {
-            R.id.correctAnswer -> return Answer.ANSWER_A
+            R.id.answer1 -> return Answer.ANSWER_A
             R.id.answer2 -> return Answer.ANSWER_B
             R.id.answer3 -> return Answer.ANSWER_C
             R.id.answer4 -> return Answer.ANSWER_D

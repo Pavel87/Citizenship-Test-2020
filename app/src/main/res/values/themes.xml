@@ -12,6 +12,8 @@
 
         <item name="android:textColorPrimary">@color/text_main</item>
         <item name="android:textColorSecondary">@color/textLabel</item>
+        <item name="android:listDivider">@color/textLabel</item>
+
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
