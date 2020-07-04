@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h4>Are you sure you want to unsubscribe from any further newsletters?</h4>
+
+<button type="button" id="b1"
+onclick="myFunction()">
+UNSUBSCRIBE</button>
+
+<p style="color:blue" id="unsubscribe"></p>
+
+</body>
+</html> 
+
+<script>
+function myFunction() {
+document.getElementById("unsubscribe").innerHTML = "You have unsubscribed from Wallet newsletter";
+document.getElementById("b1").style.display = "none";
+}
+</script>
