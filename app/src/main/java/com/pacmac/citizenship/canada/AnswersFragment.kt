@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -43,7 +45,11 @@ class AnswersFragment : Fragment() {
         view.findViewById<TextView>(R.id.correctAnswers).text = "${viewModel.correctAnswers}"
 
         if (viewModel.correctAnswers < Constants.SUCCESS_ANSWER_COUNT) {
-            view.findViewById<LinearLayout>(R.id.resultBg).setBackgroundResource(R.color.fail_bg)
+            view.findViewById<ConstraintLayout>(R.id.resultBg).setBackgroundResource(R.color.fail_bg)
+        }
+
+        view.findViewById<ImageView>(R.id.backBtn).setOnClickListener {
+            activity!!.onBackPressed()
         }
     }
 

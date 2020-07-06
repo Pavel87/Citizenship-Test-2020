@@ -25,9 +25,9 @@
         android:layout_width="0dp"
         android:layout_height="6dp"
         android:background="@color/good_time"
-        app:layout_constraintTop_toBottomOf="@+id/timer"
         app:layout_constraintEnd_toEndOf="@+id/timer"
-        app:layout_constraintStart_toStartOf="@+id/timer" />
+        app:layout_constraintStart_toStartOf="@+id/timer"
+        app:layout_constraintTop_toBottomOf="@+id/timer" />
 
     <TextView
         android:id="@+id/questionNumber"
@@ -62,11 +62,12 @@
         android:id="@+id/radioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:gravity="left"
         app:layout_constraintBottom_toTopOf="@+id/adContainer"
         app:layout_constraintEnd_toStartOf="@+id/submitButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +76,8 @@
         <RadioButton
             android:id="@+id/answer1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:fontFamily="@font/roboto"
             android:text="Answer A"
             tools:layout_editor_absoluteX="113dp"
@@ -84,7 +86,8 @@
         <RadioButton
             android:id="@+id/answer2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:fontFamily="@font/roboto"
             android:text="Answer B"
             tools:layout_editor_absoluteX="111dp"
@@ -93,7 +96,8 @@
         <RadioButton
             android:id="@+id/answer3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:fontFamily="@font/roboto"
             android:text="Answer C"
             tools:layout_editor_absoluteX="109dp"
@@ -102,7 +106,8 @@
         <RadioButton
             android:id="@+id/answer4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:fontFamily="@font/roboto"
             android:text="Answer D"
             tools:layout_editor_absoluteX="113dp"

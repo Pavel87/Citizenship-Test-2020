@@ -42,7 +42,6 @@ class ResultFragment : Fragment() {
 
         view.findViewById<TextView>(R.id.correctAnswers).text = "${viewModel.correctAnswers}"
         if (viewModel.correctAnswers < Constants.SUCCESS_ANSWER_COUNT) {
-            view.findViewById<TextView>(R.id.resultText).text = "FAIL"
             view.findViewById<ImageView>(R.id.resultImg).setImageResource(R.drawable.fail_img)
         }
 
