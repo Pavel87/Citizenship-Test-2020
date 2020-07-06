@@ -5,4 +5,5 @@ interface FragmentSelector {
     fun onTestComplete()
     fun onAnswersRequested()
     fun onInfoRequested()
+    fun onLoadFullScreenAd()
 }

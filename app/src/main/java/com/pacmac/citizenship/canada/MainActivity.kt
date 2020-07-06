@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.pacmac.citizenship.canada.util.Constants
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), FragmentSelector {
 
@@ -32,8 +33,8 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
-                .commit()
+                    .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
+                    .commit()
         }
     }
 
@@ -47,17 +48,24 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
         }
     }
 
+    override fun onLoadFullScreenAd() {
+        try {
+            mInterstitialAd.loadAd(AdRequest.Builder().build())
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     override fun onStartTest() {
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
-            .commit()
+                .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
+                .commit()
     }
 
     override fun onTestComplete() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
-            .commit()
+                .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
+                .commit()
     }
 
     override fun onAnswersRequested() {
@@ -68,14 +76,14 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
         }
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
-            .commit()
+                .add(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
+                .commit()
     }
 
     override fun onInfoRequested() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment, InfoFragment.newInstance(), Constants.INFO_FRAGMENT)
-            .commit()
+                .replace(R.id.fragment, InfoFragment.newInstance(), Constants.INFO_FRAGMENT)
+                .commit()
     }
 
     override fun onBackPressed() {
@@ -85,8 +93,8 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
             onTestComplete()
         } else {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
-                .commit()
+                    .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
+                    .commit()
         }
     }
 

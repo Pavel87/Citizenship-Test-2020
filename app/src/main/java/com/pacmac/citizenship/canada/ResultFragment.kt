@@ -48,6 +48,7 @@ class ResultFragment : Fragment() {
         view.findViewById<ImageView>(R.id.resultImg).visibility = View.VISIBLE
 
         val loadedQuestionObserver = Observer<List<QuestionObj>> { data ->
+            callback!!.onLoadFullScreenAd()
             if (data!!.isNotEmpty()) {
                 // Change Fragment
                 isClicked = false
