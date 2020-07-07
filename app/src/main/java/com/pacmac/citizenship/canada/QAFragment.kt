@@ -1,5 +1,6 @@
 package com.pacmac.citizenship.canada
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -47,12 +48,16 @@ class QAFragment : Fragment() {
     private lateinit var submitButton: Button
     private var questionNumber = 1
 
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        retainInstance = true
+//    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
-        viewModel.correctAnswers = 0;
         return inflater.inflate(R.layout.fragment_q_a, container, false)
     }
 
@@ -63,8 +68,12 @@ class QAFragment : Fragment() {
         showQuestion(view, viewModel.getQuestionList()?.get(questionNumber - 1), questionNumber)
         val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
 
-
         submitButton = view.findViewById(R.id.submitButton)
+
+        // if rotated
+        if (questionNumber == Constants.QUESTION_COUNT) {
+            submitButton.text = "Submit"
+        }
         submitButton.setOnClickListener {
             val correctAnswer = getAnswer(radioGroup.checkedRadioButtonId)
 
@@ -159,5 +168,13 @@ class QAFragment : Fragment() {
         super.onPause()
         mainHandler.removeCallbacks(timerRunnable)
         exitTime = SystemClock.elapsedRealtime()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
+                || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+        }
     }
 }

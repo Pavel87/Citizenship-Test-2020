@@ -1,5 +1,6 @@
 package com.pacmac.citizenship.canada
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,14 @@ class IntroFragment : Fragment() {
 
         view.findViewById<ImageView>(R.id.about).setOnClickListener {
             callback!!.onInfoRequested()
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
+                || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
         }
     }
 

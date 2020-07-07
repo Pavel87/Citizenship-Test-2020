@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
     }
 
     override fun onStartTest() {
+        viewModel.correctAnswers = 0
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
                 .commit()
