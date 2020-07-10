@@ -24,16 +24,40 @@ class AppViewModel : ViewModel() {
     val allQuestionList: MutableLiveData<MutableList<QuestionObj>> by lazy {
         MutableLiveData<MutableList<QuestionObj>>()
     }
+    val tempQuestionList: MutableLiveData<MutableList<QuestionObj>> by lazy {
+        MutableLiveData<MutableList<QuestionObj>>()
+    }
     val questionListShort: MutableLiveData<MutableList<QuestionObj>> by lazy {
         MutableLiveData<MutableList<QuestionObj>>()
     }
 
     fun getShortQuestionList(context: Context): MutableLiveData<MutableList<QuestionObj>> {
         if (allQuestionList.value!!.size >= 20) {
-            allQuestionList.value!!.shuffle(Random(System.currentTimeMillis()))
-            val randomIndex = Random(SystemClock.elapsedRealtime())
-                    .nextInt(0, allQuestionList.value!!.size - Constants.QUESTION_COUNT)
-            questionListShort.value = allQuestionList.value!!.subList(randomIndex, randomIndex + Constants.QUESTION_COUNT)
+
+
+            if (tempQuestionList.value == null || tempQuestionList.value!!.size < 20) {
+                tempQuestionList.value = ArrayList()
+                for (q in allQuestionList.value!!) {
+                    tempQuestionList.value!!.add(QuestionObj(q.question, q.a, q.b, q.c, q.d, q.answer))
+                }
+            }
+
+            val list = ArrayList<QuestionObj>()
+
+            for (i in 0..19) {
+                val randomIndex = Random(SystemClock.elapsedRealtime()).nextInt(0, tempQuestionList.value!!.size)
+                list.add(QuestionObj(
+                        tempQuestionList.value!!.get(randomIndex).question,
+                        tempQuestionList.value!!.get(randomIndex).a,
+                        tempQuestionList.value!!.get(randomIndex).b,
+                        tempQuestionList.value!!.get(randomIndex).c,
+                        tempQuestionList.value!!.get(randomIndex).d,
+                        tempQuestionList.value!!.get(randomIndex).answer))
+
+                tempQuestionList.value!!.removeAt(randomIndex)
+            }
+
+            questionListShort.value = list
 
         } else {
             loadQuestionList(context)
@@ -47,7 +71,8 @@ class AppViewModel : ViewModel() {
 
     fun loadQuestionList(context: Context) {
         viewModelScope.launch {
-            allQuestionList.value = Utils.createListOfQuestions(context);
+            allQuestionList.value = Utils.createListOfQuestions(context)
+            allQuestionList.value!!.shuffle(Random(System.currentTimeMillis()))
         }
     }
 

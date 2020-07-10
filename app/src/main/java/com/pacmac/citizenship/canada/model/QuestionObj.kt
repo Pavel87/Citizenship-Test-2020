@@ -1,9 +1,8 @@
 package com.pacmac.citizenship.canada.model
 
 class QuestionObj(
-    val question: String, val a: String, val b: String,
-    val c: String, val d: String, val answer: Answer, val reference: String
-) {
+        val question: String, val a: String, val b: String,
+        val c: String, val d: String, val answer: Answer) {
 
     var userAnswer: Answer = Answer.UNKNOWN
 

@@ -31,8 +31,8 @@ class ResultFragment : Fragment() {
     private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         return inflater.inflate(R.layout.fragment_result, container, false)
@@ -49,13 +49,16 @@ class ResultFragment : Fragment() {
         view.findViewById<ImageView>(R.id.resultImg).visibility = View.VISIBLE
 
         val loadedQuestionObserver = Observer<List<QuestionObj>> { data ->
-            callback!!.onLoadFullScreenAd()
-            if (data!!.isNotEmpty()) {
-                // Change Fragment
-                isClicked = false
-                callback!!.onStartTest()
-            } else {
-                viewModel.loadQuestionList(context!!.applicationContext)
+            if (data != null) {
+
+                callback!!.onLoadFullScreenAd()
+                if (data!!.isNotEmpty()) {
+                    // Change Fragment
+                    isClicked = false
+                    callback!!.onStartTest()
+                } else {
+                    viewModel.loadQuestionList(context!!.applicationContext)
+                }
             }
         }
 
@@ -64,7 +67,7 @@ class ResultFragment : Fragment() {
                 isClicked = true;
                 // show progress
                 viewModel.getShortQuestionList(context!!.applicationContext)
-                    .observe(activity!!, loadedQuestionObserver)
+                        .observe(activity!!, loadedQuestionObserver)
             }
         }
 

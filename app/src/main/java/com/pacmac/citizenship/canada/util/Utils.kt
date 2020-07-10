@@ -20,7 +20,7 @@ class Utils {
         private fun loadJSONArrayString(context: Context, updatedVersion: Boolean): String {
             if (updatedVersion) {
                 return File("${context.filesDir}/${Constants.LATEST_QUESTIONS_FILE}").bufferedReader()
-                    .use { it.readText() }
+                        .use { it.readText() }
             } else {
                 return context.assets.open("q_a_2020.json").bufferedReader().use { it.readText() }
             }
@@ -31,12 +31,12 @@ class Utils {
         fun createListOfQuestions(context: Context): MutableList<QuestionObj> {
 
             val preferences: SharedPreferences =
-                context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
+                    context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
             latestJSONVersion =
-                preferences.getInt(Constants.LAST_QUESTIONS_VERSION_PREF, Constants.JSON_VERSION)
+                    preferences.getInt(Constants.LAST_QUESTIONS_VERSION_PREF, Constants.JSON_VERSION)
 
             val jsonArray =
-                JSONArray(loadJSONArrayString(context, latestJSONVersion > Constants.JSON_VERSION))
+                    JSONArray(loadJSONArrayString(context, latestJSONVersion > Constants.JSON_VERSION))
             val list: MutableList<QuestionObj> = ArrayList()
 
 
@@ -44,13 +44,12 @@ class Utils {
                 val jsonObject = jsonArray.get(i) as JSONObject
 
                 val questionObject = QuestionObj(
-                    jsonObject.getString("question"),
-                    jsonObject.getString("a"),
-                    jsonObject.getString("b"),
-                    jsonObject.getString("c"),
-                    jsonObject.getString("d"),
-                    Answer.getCorrectAnswer(jsonObject.getString("answer")),
-                    jsonObject.optString("reference")
+                        jsonObject.getString("question"),
+                        jsonObject.getString("a"),
+                        jsonObject.getString("b"),
+                        jsonObject.getString("c"),
+                        jsonObject.getString("d"),
+                        Answer.getCorrectAnswer(jsonObject.getString("answer"))
                 )
                 list.add(questionObject)
             }
@@ -63,9 +62,9 @@ class Utils {
         }
 
         fun showBannerAdView(
-            view: View,
-            context: Context,
-            bannerID: Int
+                view: View,
+                context: Context,
+                bannerID: Int
         ) {
             val isFreeOfAds = false
 
