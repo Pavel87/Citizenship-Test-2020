@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pacmac.citizenship.canada.model.QuestionObj
+import com.pacmac.citizenship.canada.model.SuccessRate
 import com.pacmac.citizenship.canada.util.Constants
 import com.pacmac.citizenship.canada.util.Utils
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,8 @@ import kotlin.random.Random
 class AppViewModel : ViewModel() {
 
 
-    var correctAnswers = 0;
+    var correctAnswers = 0
+    val successRate: MutableLiveData<SuccessRate> = MutableLiveData(SuccessRate(0,0))
     val allQuestionList: MutableLiveData<MutableList<QuestionObj>> by lazy {
         MutableLiveData<MutableList<QuestionObj>>()
     }
@@ -73,15 +75,27 @@ class AppViewModel : ViewModel() {
         viewModelScope.launch {
             allQuestionList.value = Utils.createListOfQuestions(context)
             allQuestionList.value!!.shuffle(Random(System.currentTimeMillis()))
+            getLastSuccessRate(context)
+        }
+    }
+
+    fun getLastSuccessRate(context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val sRate = Utils.getLastSuccessRate(context)
+            successRate.value!!.sum = sRate.sum
+            successRate.value!!.completedCounter = sRate.completedCounter
+        }
+    }
+
+    fun updateSuccessRate(context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            Utils.setLastSuccessRate(context, successRate.value!!)
         }
     }
 
     fun downloadLatestQuestions(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
-
             try {
-
-
                 val preferences: SharedPreferences =
                         context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
                 val lastVersion: Int =
@@ -98,7 +112,6 @@ class AppViewModel : ViewModel() {
                                         .putInt(Constants.LAST_QUESTIONS_VERSION_PREF, newVersion.toInt())
                                         .commit()
                             }
-
                     loadQuestionList(context)
                 }
             } catch (e: Exception) {

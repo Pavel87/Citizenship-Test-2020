@@ -2,7 +2,7 @@ package com.pacmac.citizenship.canada
 
 interface FragmentSelector {
     fun onStartTest()
-    fun onTestComplete()
+    fun onTestComplete(updateSuccessRate: Boolean)
     fun onAnswersRequested()
     fun onInfoRequested()
     fun onLoadFullScreenAd()

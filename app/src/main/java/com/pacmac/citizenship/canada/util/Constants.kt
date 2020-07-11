@@ -21,6 +21,8 @@ class Constants {
 
         const val APP_PREFERENCE_FILE = "APP_PREFERENCE_FILE"
         const val LAST_QUESTIONS_VERSION_PREF = "QUESTIONS_VERSION"
+        const val SUCCESS_RATE_SUM_PREF = "SUCCESS_RATE_SUM_PREF"
+        const val SUCCESS_RATE_COUNT_PREF = "SUCCESS_RATE_COUNT_PREF"
 
         const val JSON_VERSION_URL = "https://pacmac-cic.firebaseapp.com/json_version.html"
         const val QUESTION_LIST_URL = "https://pacmac-cic.firebaseapp.com/q_a_2020.json"

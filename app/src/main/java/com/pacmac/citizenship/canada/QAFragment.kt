@@ -54,8 +54,8 @@ class QAFragment : Fragment() {
 //    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         return inflater.inflate(R.layout.fragment_q_a, container, false)
@@ -89,15 +89,13 @@ class QAFragment : Fragment() {
 
             if (questionNumber < Constants.QUESTION_COUNT) {
                 questionNumber++
-
                 showQuestion(
-                    view,
-                    viewModel.getQuestionList()?.get(questionNumber - 1),
-                    questionNumber
+                        view,
+                        viewModel.getQuestionList()?.get(questionNumber - 1),
+                        questionNumber
                 )
-
             } else {
-                callback!!.onTestComplete()
+                callback!!.onTestComplete(true)
             }
 
             if (questionNumber == Constants.QUESTION_COUNT) {
@@ -110,7 +108,7 @@ class QAFragment : Fragment() {
             view.findViewById<TextView>(R.id.timer).text = Utils.formatTimeLimit(time)
             if (time < WARN_TIME) {
                 view.findViewById<View>(R.id.timerHighlighter)
-                    .setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
+                        .setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
             }
 
             if (time > 0) {
@@ -119,7 +117,8 @@ class QAFragment : Fragment() {
             } else {
                 val correctAnswer = getAnswer(radioGroup.checkedRadioButtonId)
                 viewModel.getQuestionList()?.get(questionNumber - 1)?.userAnswer = correctAnswer
-                callback!!.onTestComplete()
+
+                callback!!.onTestComplete(true)
             }
         }
     }

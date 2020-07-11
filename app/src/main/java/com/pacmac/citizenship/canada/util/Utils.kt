@@ -9,6 +9,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.pacmac.citizenship.canada.model.Answer
 import com.pacmac.citizenship.canada.model.QuestionObj
+import com.pacmac.citizenship.canada.model.SuccessRate
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -78,6 +79,27 @@ class Utils {
             (view as LinearLayout).addView(mAdView)
             val adRequest: AdRequest = AdRequest.Builder().build()
             mAdView.loadAd(adRequest)
+        }
+
+
+        fun getLastSuccessRate(context: Context): SuccessRate {
+            val preferences: SharedPreferences =
+                    context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
+            val sum = preferences.getInt(Constants.SUCCESS_RATE_SUM_PREF, 0)
+            val count = preferences.getInt(Constants.SUCCESS_RATE_COUNT_PREF, 0)
+
+            return SuccessRate(sum, count)
+        }
+
+        fun setLastSuccessRate(context: Context, successRate: SuccessRate) {
+            val preferences: SharedPreferences =
+                    context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
+
+            preferences.edit()
+                    .putInt(Constants.SUCCESS_RATE_SUM_PREF, successRate.sum)
+                    .putInt(Constants.SUCCESS_RATE_COUNT_PREF, successRate.completedCounter)
+                    .apply()
+
         }
     }
 }

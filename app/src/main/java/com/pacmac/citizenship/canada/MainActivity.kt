@@ -13,7 +13,7 @@ import java.lang.Exception
 class MainActivity : AppCompatActivity(), FragmentSelector {
 
     private lateinit var viewModel: AppViewModel
-    private lateinit var mInterstitialAd: InterstitialAd
+    private var mInterstitialAd: InterstitialAd? = null
     private var adShown = false
 
 
@@ -22,9 +22,7 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
         setContentView(R.layout.activity_main)
 
         MobileAds.initialize(applicationContext) {
-            mInterstitialAd = InterstitialAd(applicationContext)
-            mInterstitialAd.adUnitId = getString(R.string.interstitial_id_1)
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
+            initializeFullScreenAd()
         }
 
         viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
@@ -36,6 +34,12 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
                     .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
                     .commit()
         }
+    }
+
+    fun initializeFullScreenAd() {
+        mInterstitialAd = InterstitialAd(applicationContext)
+        mInterstitialAd!!.adUnitId = getString(R.string.interstitial_id_1)
+        mInterstitialAd!!.loadAd(AdRequest.Builder().build())
     }
 
     override fun onAttachFragment(fragment: Fragment) {
@@ -50,7 +54,7 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
 
     override fun onLoadFullScreenAd() {
         try {
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
+            mInterstitialAd!!.loadAd(AdRequest.Builder().build())
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -63,21 +67,31 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
                 .commit()
     }
 
-    override fun onTestComplete() {
+    override fun onTestComplete(updateSuccessRate: Boolean) {
+
+        // Update Success Rate
+        if (updateSuccessRate) {
+            viewModel.successRate.value!!.sum += 100 * viewModel.correctAnswers / Constants.QUESTION_COUNT
+            viewModel.successRate.value!!.completedCounter++
+            viewModel.updateSuccessRate(applicationContext)
+        }
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
                 .commit()
     }
 
     override fun onAnswersRequested() {
-        if (mInterstitialAd.isLoaded && !adShown) {
-            mInterstitialAd.show()
+
+        if (mInterstitialAd == null) {
+            initializeFullScreenAd()
+        } else if (mInterstitialAd!!.isLoaded && !adShown) {
+            mInterstitialAd!!.show()
         } else {
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
+            onLoadFullScreenAd()
         }
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
+                .replace(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
                 .commit()
     }
 
@@ -91,7 +105,7 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
         if (supportFragmentManager.findFragmentByTag(Constants.INTRO_FRAGMENT) != null) {
             super.onBackPressed()
         } else if (supportFragmentManager.findFragmentByTag(Constants.ANSWERS_FRAGMENT) != null) {
-            onTestComplete()
+            onTestComplete(false)
         } else {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)

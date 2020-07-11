@@ -74,6 +74,9 @@ class ResultFragment : Fragment() {
         view.findViewById<Button>(R.id.showAnswerBtn).setOnClickListener {
             callback!!.onAnswersRequested()
         }
+
+
+        view.findViewById<TextView>(R.id.successRate).text = "${viewModel.successRate.value!!.sum / viewModel.successRate.value!!.completedCounter}%"
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

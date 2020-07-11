@@ -23,8 +23,8 @@ class AnswersFragment : Fragment() {
     private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         container!!.removeAllViews()
@@ -39,7 +39,7 @@ class AnswersFragment : Fragment() {
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = AnswerRecyclerViewAdapter(viewModel.getQuestionList()!!)
         list.addItemDecoration(
-            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
         )
 
         view.findViewById<TextView>(R.id.correctAnswers).text = "${viewModel.correctAnswers}"
