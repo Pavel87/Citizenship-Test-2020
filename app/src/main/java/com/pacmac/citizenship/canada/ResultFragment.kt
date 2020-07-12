@@ -31,8 +31,8 @@ class ResultFragment : Fragment() {
     private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         return inflater.inflate(R.layout.fragment_result, container, false)
@@ -51,11 +51,11 @@ class ResultFragment : Fragment() {
         val loadedQuestionObserver = Observer<List<QuestionObj>> { data ->
             if (data != null) {
 
-                callback!!.onLoadFullScreenAd()
-                if (data!!.isNotEmpty()) {
+                callback?.onLoadFullScreenAd()
+                if (data?.isNotEmpty()) {
                     // Change Fragment
                     isClicked = false
-                    callback!!.onStartTest()
+                    callback?.onStartTest()
                 } else {
                     viewModel.loadQuestionList(context!!.applicationContext)
                 }
@@ -67,23 +67,25 @@ class ResultFragment : Fragment() {
                 isClicked = true;
                 // show progress
                 viewModel.getShortQuestionList(context!!.applicationContext)
-                        .observe(activity!!, loadedQuestionObserver)
+                    .observe(activity!!, loadedQuestionObserver)
             }
         }
 
         view.findViewById<Button>(R.id.showAnswerBtn).setOnClickListener {
-            callback!!.onAnswersRequested()
+            callback?.onAnswersRequested()
         }
 
 
-        view.findViewById<TextView>(R.id.successRate).text = "${viewModel.successRate.value!!.sum / viewModel.successRate.value!!.completedCounter}%"
+        view.findViewById<TextView>(R.id.successRate).text =
+            "${viewModel.successRate.value!!.sum / viewModel.successRate.value!!.completedCounter}%"
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
-                || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+            || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT
+        ) {
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
         }
     }
 }

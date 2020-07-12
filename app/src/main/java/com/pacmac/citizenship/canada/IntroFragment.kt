@@ -46,12 +46,12 @@ class IntroFragment : Fragment() {
 
         val loadedQuestionObserver = Observer<List<QuestionObj>> { data ->
             if (data != null) {
-                callback!!.onLoadFullScreenAd()
-                if (data!!.isNotEmpty()) {
+                callback?.onLoadFullScreenAd()
+                if (data?.isNotEmpty()) {
                     // Change Fragment
                     view.findViewById<ProgressBar>(R.id.startProgress).visibility = View.INVISIBLE
                     isClicked = false
-                    callback!!.onStartTest()
+                    callback?.onStartTest()
                 } else {
                     viewModel.loadQuestionList(context!!.applicationContext)
                 }
@@ -72,7 +72,7 @@ class IntroFragment : Fragment() {
         }
 
         view.findViewById<ImageView>(R.id.about).setOnClickListener {
-            callback!!.onInfoRequested()
+            callback?.onInfoRequested()
         }
     }
 
@@ -80,7 +80,7 @@ class IntroFragment : Fragment() {
         super.onConfigurationChanged(newConfig)
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
                 || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
         }
     }
 

@@ -35,10 +35,10 @@ class InfoFragment : Fragment() {
 
 
         view.findViewById<TextView>(R.id.versionString).text =
-                context!!.packageManager.getPackageInfo(context!!.packageName, 0).versionName
+                context?.packageManager?.getPackageInfo(context!!.packageName, 0)?.versionName
         view.findViewById<TextView>(R.id.jsonVersion).text = "${Utils.latestJSONVersion}"
         view.findViewById<TextView>(R.id.qCounter).text =
-                "${viewModel.allQuestionList.value!!.size}"
+                "${viewModel.allQuestionList.value?.size}"
 
 
         viewModel.getLastSuccessRate(context!!)
@@ -54,12 +54,12 @@ class InfoFragment : Fragment() {
 
 
         view.findViewById<Button>(R.id.submitRating).setOnClickListener {
-            val appPackage = context!!.packageName
+            val appPackage = context?.packageName
             val intent = Intent(
                     Intent.ACTION_VIEW,
                     Uri.parse("https://play.google.com/store/apps/details?id=$appPackage")
             )
-            context!!.startActivity(intent)
+            context?.startActivity(intent)
         }
     }
 

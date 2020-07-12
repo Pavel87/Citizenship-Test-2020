@@ -31,15 +31,15 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
-                    .commit()
+                .add(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
+                .commit()
         }
     }
 
     fun initializeFullScreenAd() {
         mInterstitialAd = InterstitialAd(applicationContext)
-        mInterstitialAd!!.adUnitId = getString(R.string.interstitial_id_1)
-        mInterstitialAd!!.loadAd(AdRequest.Builder().build())
+        mInterstitialAd?.adUnitId = getString(R.string.interstitial_id_1)
+        mInterstitialAd?.loadAd(AdRequest.Builder().build())
     }
 
     override fun onAttachFragment(fragment: Fragment) {
@@ -54,7 +54,10 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
 
     override fun onLoadFullScreenAd() {
         try {
-            mInterstitialAd!!.loadAd(AdRequest.Builder().build())
+            if (mInterstitialAd == null) {
+                initializeFullScreenAd()
+            }
+            mInterstitialAd?.loadAd(AdRequest.Builder().build())
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -63,42 +66,39 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
     override fun onStartTest() {
         viewModel.correctAnswers = 0
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
-                .commit()
+            .replace(R.id.fragment, QAFragment.newInstance(), Constants.QA_FRAGMENT)
+            .commit()
     }
 
     override fun onTestComplete(updateSuccessRate: Boolean) {
 
         // Update Success Rate
-        if (updateSuccessRate) {
+        if (updateSuccessRate && viewModel.successRate.value != null) {
             viewModel.successRate.value!!.sum += 100 * viewModel.correctAnswers / Constants.QUESTION_COUNT
             viewModel.successRate.value!!.completedCounter++
             viewModel.updateSuccessRate(applicationContext)
         }
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
-                .commit()
+            .replace(R.id.fragment, ResultFragment.newInstance(), Constants.RESULT_FRAGMENT)
+            .commit()
     }
 
     override fun onAnswersRequested() {
-
-        if (mInterstitialAd == null) {
-            initializeFullScreenAd()
-        } else if (mInterstitialAd!!.isLoaded && !adShown) {
-            mInterstitialAd!!.show()
+        if (mInterstitialAd?.isLoaded ?: false && !adShown) {
+            mInterstitialAd?.show()
         } else {
             onLoadFullScreenAd()
         }
 
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
-                .commit()
+            .replace(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
+            .commit()
     }
 
     override fun onInfoRequested() {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment, InfoFragment.newInstance(), Constants.INFO_FRAGMENT)
-                .commit()
+            .replace(R.id.fragment, InfoFragment.newInstance(), Constants.INFO_FRAGMENT)
+            .commit()
     }
 
     override fun onBackPressed() {
@@ -108,8 +108,8 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
             onTestComplete(false)
         } else {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
-                    .commit()
+                .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
+                .commit()
         }
     }
 

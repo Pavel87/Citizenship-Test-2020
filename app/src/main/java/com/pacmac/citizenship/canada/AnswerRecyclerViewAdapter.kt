@@ -11,11 +11,11 @@ import com.pacmac.citizenship.canada.model.QuestionObj
 
 
 class AnswerRecyclerViewAdapter(private val values: List<QuestionObj>) :
-        RecyclerView.Adapter<AnswerRecyclerViewAdapter.ViewHolder>() {
+    RecyclerView.Adapter<AnswerRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.answer_item, parent, false)
+            .inflate(R.layout.answer_item, parent, false)
         return ViewHolder(view)
     }
 

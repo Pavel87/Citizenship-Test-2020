@@ -48,14 +48,9 @@ class QAFragment : Fragment() {
     private lateinit var submitButton: Button
     private var questionNumber = 1
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        retainInstance = true
-//    }
-
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
         return inflater.inflate(R.layout.fragment_q_a, container, false)
@@ -90,12 +85,12 @@ class QAFragment : Fragment() {
             if (questionNumber < Constants.QUESTION_COUNT) {
                 questionNumber++
                 showQuestion(
-                        view,
-                        viewModel.getQuestionList()?.get(questionNumber - 1),
-                        questionNumber
+                    view,
+                    viewModel.getQuestionList()?.get(questionNumber - 1),
+                    questionNumber
                 )
             } else {
-                callback!!.onTestComplete(true)
+                callback?.onTestComplete(true)
             }
 
             if (questionNumber == Constants.QUESTION_COUNT) {
@@ -108,7 +103,7 @@ class QAFragment : Fragment() {
             view.findViewById<TextView>(R.id.timer).text = Utils.formatTimeLimit(time)
             if (time < WARN_TIME) {
                 view.findViewById<View>(R.id.timerHighlighter)
-                        .setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
+                    .setBackgroundColor(context!!.resources.getColor(R.color.bad_time))
             }
 
             if (time > 0) {
@@ -118,7 +113,7 @@ class QAFragment : Fragment() {
                 val correctAnswer = getAnswer(radioGroup.checkedRadioButtonId)
                 viewModel.getQuestionList()?.get(questionNumber - 1)?.userAnswer = correctAnswer
 
-                callback!!.onTestComplete(true)
+                callback?.onTestComplete(true)
             }
         }
     }
@@ -172,8 +167,9 @@ class QAFragment : Fragment() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
-                || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+            || newConfig.orientation == Configuration.ORIENTATION_PORTRAIT
+        ) {
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
         }
     }
 }

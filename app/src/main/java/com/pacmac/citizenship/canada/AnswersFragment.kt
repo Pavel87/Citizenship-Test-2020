@@ -23,11 +23,11 @@ class AnswersFragment : Fragment() {
     private lateinit var viewModel: AppViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
-        container!!.removeAllViews()
+        container?.removeAllViews()
         val view = inflater.inflate(R.layout.fragment_answers_list, container, false)
 
         return view
@@ -39,17 +39,18 @@ class AnswersFragment : Fragment() {
         list.layoutManager = LinearLayoutManager(context)
         list.adapter = AnswerRecyclerViewAdapter(viewModel.getQuestionList()!!)
         list.addItemDecoration(
-                DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+            DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
         )
 
         view.findViewById<TextView>(R.id.correctAnswers).text = "${viewModel.correctAnswers}"
 
         if (viewModel.correctAnswers < Constants.SUCCESS_ANSWER_COUNT) {
-            view.findViewById<ConstraintLayout>(R.id.resultBg).setBackgroundResource(R.color.fail_bg)
+            view.findViewById<ConstraintLayout>(R.id.resultBg)
+                .setBackgroundResource(R.color.fail_bg)
         }
 
         view.findViewById<ImageView>(R.id.backBtn).setOnClickListener {
-            activity!!.onBackPressed()
+            activity?.onBackPressed()
         }
     }
 

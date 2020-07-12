@@ -34,13 +34,13 @@ class AppViewModel : ViewModel() {
     }
 
     fun getShortQuestionList(context: Context): MutableLiveData<MutableList<QuestionObj>> {
-        if (allQuestionList.value!!.size >= 20) {
+        if (allQuestionList.value?.size ?: 0 >= 20) {
 
 
-            if (tempQuestionList.value == null || tempQuestionList.value!!.size < 20) {
+            if (tempQuestionList.value == null || tempQuestionList.value?.size ?: 0 < 20) {
                 tempQuestionList.value = ArrayList()
                 for (q in allQuestionList.value!!) {
-                    tempQuestionList.value!!.add(QuestionObj(q.question, q.a, q.b, q.c, q.d, q.answer))
+                    tempQuestionList.value?.add(QuestionObj(q.question, q.a, q.b, q.c, q.d, q.answer))
                 }
             }
 
@@ -56,7 +56,7 @@ class AppViewModel : ViewModel() {
                         tempQuestionList.value!!.get(randomIndex).d,
                         tempQuestionList.value!!.get(randomIndex).answer))
 
-                tempQuestionList.value!!.removeAt(randomIndex)
+                tempQuestionList.value?.removeAt(randomIndex)
             }
 
             questionListShort.value = list
@@ -74,7 +74,7 @@ class AppViewModel : ViewModel() {
     fun loadQuestionList(context: Context) {
         viewModelScope.launch {
             allQuestionList.value = Utils.createListOfQuestions(context)
-            allQuestionList.value!!.shuffle(Random(System.currentTimeMillis()))
+            allQuestionList.value?.shuffle(Random(System.currentTimeMillis()))
             getLastSuccessRate(context)
         }
     }
@@ -82,8 +82,8 @@ class AppViewModel : ViewModel() {
     fun getLastSuccessRate(context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             val sRate = Utils.getLastSuccessRate(context)
-            successRate.value!!.sum = sRate.sum
-            successRate.value!!.completedCounter = sRate.completedCounter
+            successRate.value?.sum = sRate.sum
+            successRate.value?.completedCounter = sRate.completedCounter
         }
     }
 
