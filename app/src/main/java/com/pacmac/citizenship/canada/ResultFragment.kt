@@ -34,7 +34,7 @@ class ResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(AppViewModel::class.java)
         return inflater.inflate(R.layout.fragment_result, container, false)
     }
 
@@ -57,7 +57,7 @@ class ResultFragment : Fragment() {
                     isClicked = false
                     callback?.onStartTest()
                 } else {
-                    viewModel.loadQuestionList(context!!.applicationContext)
+                    viewModel.loadQuestionList(requireContext().applicationContext)
                 }
             }
         }
@@ -66,8 +66,8 @@ class ResultFragment : Fragment() {
             if (!isClicked) {
                 isClicked = true;
                 // show progress
-                viewModel.getShortQuestionList(context!!.applicationContext)
-                    .observe(activity!!, loadedQuestionObserver)
+                viewModel.getShortQuestionList(requireContext().applicationContext)
+                    .observe(requireActivity(), loadedQuestionObserver)
             }
         }
 

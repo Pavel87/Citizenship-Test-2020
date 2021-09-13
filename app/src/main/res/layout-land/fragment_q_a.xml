@@ -122,11 +122,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="@font/roboto"
-        android:text="sada sadasadas"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/timer"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintWidth_max="480dp"
+        tools:text="sada sadasadas sadasadas sadasadas sadasadassadasadassadasadas sadasadassadasadassadasadas sadasadassadasadassadasadas sadasadas" />
 
 
     <Button
@@ -136,6 +138,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
+        android:minWidth="120dp"
         android:text="Next"
         app:layout_constraintBottom_toTopOf="@+id/adContainer"
         app:layout_constraintEnd_toEndOf="parent" />

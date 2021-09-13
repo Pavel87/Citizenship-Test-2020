@@ -4,25 +4,25 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.pacmac.citizenship.canada.util.Constants
-import java.lang.Exception
+
 
 class MainActivity : AppCompatActivity(), FragmentSelector {
 
     private lateinit var viewModel: AppViewModel
-    private var mInterstitialAd: InterstitialAd? = null
-    private var adShown = false
+    private lateinit var adsHelper: AdsHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        adsHelper = AdsHelper(context = this)
+
         MobileAds.initialize(applicationContext) {
-            initializeFullScreenAd()
+            adsHelper.initializeFullScreenAd()
+            adsHelper.initializeRewardedAd()
         }
 
         viewModel = ViewModelProvider(this).get(AppViewModel::class.java)
@@ -36,11 +36,6 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
         }
     }
 
-    fun initializeFullScreenAd() {
-        mInterstitialAd = InterstitialAd(applicationContext)
-        mInterstitialAd?.adUnitId = getString(R.string.interstitial_id_1)
-        mInterstitialAd?.loadAd(AdRequest.Builder().build())
-    }
 
     override fun onAttachFragment(fragment: Fragment) {
         if (fragment is IntroFragment) {
@@ -49,17 +44,22 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
             fragment.setFragmentSelector(this)
         } else if (fragment is ResultFragment) {
             fragment.setFragmentSelector(this)
+        } else if (fragment is InfoFragment) {
+            fragment.setFragmentSelector(this)
         }
     }
 
     override fun onLoadFullScreenAd() {
         try {
-            if (mInterstitialAd == null) {
-                initializeFullScreenAd()
-            }
-            mInterstitialAd?.loadAd(AdRequest.Builder().build())
+            adsHelper.initializeFullScreenAd()
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    override fun onRewardedAdRequested(callback: (isUnlocked: Boolean)->Unit) {
+        adsHelper.showRewardedApp(this) { isUnlocked ->
+            callback.invoke(isUnlocked)
         }
     }
 
@@ -84,12 +84,7 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
     }
 
     override fun onAnswersRequested() {
-        if (mInterstitialAd?.isLoaded ?: false && !adShown) {
-            mInterstitialAd?.show()
-        } else {
-            onLoadFullScreenAd()
-        }
-
+        adsHelper.showInterestialAd(this)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment, AnswersFragment.newInstance(), Constants.ANSWERS_FRAGMENT)
             .commit()
@@ -101,17 +96,23 @@ class MainActivity : AppCompatActivity(), FragmentSelector {
             .commit()
     }
 
+    override fun onInsightFragmentRequested() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment, InsightFragment.newInstance(), Constants.INSIGHT_FRAGMENT)
+            .commit()
+    }
+
     override fun onBackPressed() {
         if (supportFragmentManager.findFragmentByTag(Constants.INTRO_FRAGMENT) != null) {
             super.onBackPressed()
         } else if (supportFragmentManager.findFragmentByTag(Constants.ANSWERS_FRAGMENT) != null) {
             onTestComplete(false)
+        } else if (supportFragmentManager.findFragmentByTag(Constants.INSIGHT_FRAGMENT) != null) {
+            onInfoRequested()
         } else {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment, IntroFragment.newInstance(), Constants.INTRO_FRAGMENT)
                 .commit()
         }
     }
-
-
 }

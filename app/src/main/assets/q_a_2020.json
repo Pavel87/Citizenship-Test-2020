@@ -65,7 +65,7 @@
   },
   {
     "question": "Who was Lieutenant Colonel John Graves Simcoe?",
-    "a": "Upper Canada's first Lieutenant Governor and founder of the City of Toronto",
+    "a": "Upper Canada's first Lieutenant Governor and founder of the City of York",
     "b": "Lower Canada's first Lieutenant Governor and founder of the City of Toronto",
     "c": "Lower Canada's first Lieutenant Governor and founder of the City of Ottawa",
     "d": "The leader of the loyalists",
@@ -481,7 +481,7 @@
   },
   {
     "question": "Name all the federal political parties in the House of Commons and their leaders",
-    "a": "Conservative (Scheer), NDP (Singh), Liberal (Trudeau), Bloc Quebecois (Blanchet), Green Party (Roberts)",
+    "a": "Conservative (O'Toole), NDP (Singh), Liberal (Trudeau), Bloc Quebecois (Blanchet), Green Party (Paul)",
     "b": "Conservative (Harper), Green (May), Liberal (Trudeau), Bloc Quebecois (Duceppe)",
     "c": "NDP (Mulcair), Green (May), Liberal (Rae), Bloc Quebecois (Paillé)",
     "d": "Liberal (Ignatieff), Conservative (Ambrose), NDP (Turmel), Green (May)",
@@ -873,16 +873,16 @@
   },
   {
     "question": "What is the name of the Governor General?",
-    "a": "David Johnston.",
-    "b": "Elizabeth May.",
-    "c": "Dalton McGuinty.",
+    "a": "David Johnston",
+    "b": "Mary May Simon",
+    "c": "Dalton McGuinty",
     "d": "Julie Payette",
-    "answer": "d"
+    "answer": "b"
   },
   {
     "question": "What is the name of the Prime Minister of Canada and his/her party?",
     "a": "Justin Trudeau (Liberal Party).",
-    "b": "Stephen Harper (Conservative Party).",
+    "b": "Erin O'Toole (Conservative Party).",
     "c": "Thomas Mulcair (New Democratic Party).",
     "d": "Christie Clark (Liberal Party).",
     "answer": "a"
@@ -1486,5 +1486,61 @@
     "c": "It enhances our economy and raises our standard of living.",
     "d": "It brings in cheaper goods.",
     "answer": "c"
+  },
+  {
+    "question": "Which of the senteces is right about Canada",
+    "a": "Citizens do not get any exclusive rights",
+    "b": "Women can work in any profession they choose to work.",
+    "c": "There are no obligations for citizens. ",
+    "d": "Women can only work in specific professions in Canada.",
+    "answer": "b"
+  },
+  {
+    "question": "What type of art is Group of Seven most known for?",
+    "a": "Paintings capturing the battles between British and French.",
+    "b": "Modern abstract art.",
+    "c": "Modern aboriginal art",
+    "d": "Paintings of rugged wildernes landscapes.",
+    "answer": "d"
+  },
+  {
+    "question": "What is a common title of winners in federal elections?",
+    "a": "Riding winners.",
+    "b": "Constituency winners.",
+    "c": "Members Parliament.",
+    "d": "Senators",
+    "answer": "c"
+  },
+  {
+    "question": "What motto was adopted by Canadians after the first World War?",
+    "a": "A Mari Usque Ad Mare.",
+    "b": "Dominion from sea to sea",
+    "c": "E pluribus unum",
+    "d": "In God We Trust",
+    "answer": "a"
+  },
+  {
+    "question": "Serving on a jury is a privilege that makes the justice system work as it depends on impartial juries made up of citizens who sat on juries previously?",
+    "a": "True.",
+    "b": "False.",
+    "c": "",
+    "d": "",
+    "answer": "b"
+  },
+  {
+    "question": "At Blaine in the State of Washington, the _______, inscribed with the words \"children of a common mother\" and \"brethren dwelling together in unity\".",
+    "a": "Peace Tower.",
+    "b": "Confederation Bridge",
+    "c": "Peace Arch",
+    "d": "Vimy Memorial",
+    "answer": "c"
+  },
+  {
+    "question": "What is the highest mountain in Canada?",
+    "a": "Mount Saint Elias",
+    "b": "Mont Blanc",
+    "c": "Mount Robson",
+    "d": "Mount Logan",
+    "answer": "d"
   }
 ]

@@ -98,12 +98,13 @@ class AppViewModel : ViewModel() {
             try {
                 val preferences: SharedPreferences =
                         context.getSharedPreferences(Constants.APP_PREFERENCE_FILE, Context.MODE_PRIVATE)
-                val lastVersion: Int =
-                        preferences.getInt(Constants.LAST_QUESTIONS_VERSION_PREF, Constants.JSON_VERSION)
+                val lastVersion = preferences.getInt(Constants.LAST_QUESTIONS_VERSION_PREF, Constants.JSON_VERSION).coerceAtLeast(Constants.JSON_VERSION)
+
+
 
                 val newVersion = URL(Constants.JSON_VERSION_URL).readText()
 
-                if (!newVersion.isNullOrBlank() && lastVersion != newVersion.toInt()) {
+                if (!newVersion.isNullOrBlank() && lastVersion < newVersion.toInt()) {
                     val newQuestions = URL(Constants.QUESTION_LIST_URL).readText()
                     File("${context.filesDir}/${Constants.LATEST_QUESTIONS_FILE}").bufferedWriter()
                             .use { out ->

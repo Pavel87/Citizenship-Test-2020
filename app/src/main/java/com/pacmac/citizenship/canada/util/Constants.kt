@@ -9,6 +9,7 @@ class Constants {
         val RESULT_FRAGMENT = "RESULT_FRAGMENT"
         val ANSWERS_FRAGMENT = "ANSWERS_FRAGMENT"
         val INFO_FRAGMENT = "INFO_FRAGMENT"
+        val INSIGHT_FRAGMENT = "INSIGHT_FRAGMENT"
 
         const val SUCCESS_ANSWER_COUNT = 15
         const val QUESTION_COUNT = 20
@@ -17,7 +18,7 @@ class Constants {
         const val WARN_TIME = 3 * 60
 
 
-        const val JSON_VERSION = 1
+        const val JSON_VERSION = 2
 
         const val APP_PREFERENCE_FILE = "APP_PREFERENCE_FILE"
         const val LAST_QUESTIONS_VERSION_PREF = "QUESTIONS_VERSION"
