@@ -38,7 +38,7 @@ class IntroFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(activity!!).get(AppViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()!!).get(AppViewModel::class.java)
     }
 
 
@@ -47,13 +47,13 @@ class IntroFragment : Fragment() {
         val loadedQuestionObserver = Observer<List<QuestionObj>> { data ->
             if (data != null) {
                 callback?.onLoadFullScreenAd()
-                if (data?.isNotEmpty()) {
+                if (data?.isNotEmpty() == true) {
                     // Change Fragment
                     view.findViewById<ProgressBar>(R.id.startProgress).visibility = View.INVISIBLE
                     isClicked = false
                     callback?.onStartTest()
                 } else {
-                    viewModel.loadQuestionList(context!!.applicationContext)
+                    viewModel.loadQuestionList(requireContext().applicationContext)
                 }
             }
         }
@@ -65,8 +65,8 @@ class IntroFragment : Fragment() {
                 isClicked = true;
                 // show progress
                 view.findViewById<ProgressBar>(R.id.startProgress).visibility = View.VISIBLE
-                viewModel.getShortQuestionList(context!!.applicationContext)
-                        .observe(activity!!, loadedQuestionObserver)
+                viewModel.getShortQuestionList(requireContext().applicationContext)
+                        .observe(requireActivity(), loadedQuestionObserver)
 
             }
         }

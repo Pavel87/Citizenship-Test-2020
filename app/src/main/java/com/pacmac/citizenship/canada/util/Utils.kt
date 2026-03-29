@@ -24,7 +24,7 @@ object Utils {
             File("${context.filesDir}/${Constants.LATEST_QUESTIONS_FILE}").bufferedReader()
                 .use { it.readText() }
         } else {
-            context.assets.open("q_a_2020.json").bufferedReader().use { it.readText() }
+            context.assets.open("q_a_2026.json").bufferedReader().use { it.readText() }
         }
     }
 
@@ -76,8 +76,8 @@ object Utils {
             return
         }
         val mAdView = AdView(context)
-        mAdView.adSize = AdSize.BANNER
-        mAdView.adUnitId = context.resources.getString(bannerID)
+        mAdView.setAdSize(AdSize.BANNER)
+        mAdView.setAdUnitId(context.resources.getString(bannerID))
         (view as LinearLayout).addView(mAdView)
         val adRequest: AdRequest = AdRequest.Builder().build()
         mAdView.loadAd(adRequest)

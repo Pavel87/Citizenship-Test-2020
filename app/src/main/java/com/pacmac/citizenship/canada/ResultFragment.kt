@@ -52,7 +52,7 @@ class ResultFragment : Fragment() {
             if (data != null) {
 
                 callback?.onLoadFullScreenAd()
-                if (data?.isNotEmpty()) {
+                if (data?.isNotEmpty() == true) {
                     // Change Fragment
                     isClicked = false
                     callback?.onStartTest()
