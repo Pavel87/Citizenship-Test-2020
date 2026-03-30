@@ -1,18 +1,19 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.pacmac.citizenship.canada"
-        minSdk 21
-        targetSdk 34
-        versionCode 3
-        versionName "1.2"
-
+        minSdk 23
+        targetSdk 36
+        versionCode 6
+        versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -21,6 +22,8 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "banner_id_1", "ca-app-pub-9192035457575047/6990217164"
+            resValue "string", "banner_id_2", "ca-app-pub-9192035457575047/2305589589"
+            resValue "string", "banner_id_3", "ca-app-pub-9192035457575047/6240965163"
             resValue "string", "interstitial_id_1", "ca-app-pub-9192035457575047/4536278366"
             resValue "string", "rewarded_id_1", "ca-app-pub-9192035457575047/7133764961"
         }
@@ -28,6 +31,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "banner_id_1", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "banner_id_2", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "banner_id_3", "ca-app-pub-3940256099942544/6300978111"
             resValue "string", "interstitial_id_1", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "rewarded_id_1", "ca-app-pub-3940256099942544/5224354917"
         }
@@ -36,24 +41,59 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = '17'
+    kotlin {
+        jvmToolchain(17)
+    }
+    buildFeatures {
+        compose true
+        resValues true
     }
     namespace 'com.pacmac.citizenship.canada'
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.activity:activity-ktx:1.8.2'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'com.google.android.gms:play-services-ads:23.3.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // Core
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+
+    // Lifecycle
+    implementation libs.lifecycle.viewmodel.ktx
+    implementation libs.lifecycle.runtime.ktx
+    implementation libs.lifecycle.runtime.compose
+    implementation libs.lifecycle.viewmodel.compose
+
+    // Coroutines
+    implementation libs.coroutines.android
+
+    // Hilt
+    implementation libs.hilt.android
+    ksp libs.hilt.compiler
+
+    // Compose BOM
+    implementation platform(libs.compose.bom)
+    implementation libs.compose.ui
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.compose.material3
+    implementation libs.compose.material.icons.extended
+    debugImplementation libs.compose.ui.tooling
+
+    // Navigation Compose + Hilt
+    implementation libs.navigation.compose
+    implementation libs.hilt.navigation.compose
+    implementation libs.hilt.lifecycle.viewmodel.compose
+
+    // Activity Compose
+    implementation libs.activity.compose
+
+    // Ads
+    implementation libs.play.services.ads
+
+    // Billing
+    implementation libs.billing.ktx
+
+    // Test
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.test.junit
+    androidTestImplementation libs.espresso.core
 }
