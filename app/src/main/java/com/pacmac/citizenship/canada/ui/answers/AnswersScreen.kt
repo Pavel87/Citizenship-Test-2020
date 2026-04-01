@@ -122,7 +122,7 @@ private fun AnswerItem(number: Int, question: Question) {
         label = "itemBg"
     )
 
-    Surface(color = bgColor) {
+    Surface(color = bgColor, modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row {
                 Text(

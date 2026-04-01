@@ -28,7 +28,7 @@ class QuizRepository @Inject constructor(
         questionDataSource.loadLocalQuestions().onSuccess { questions ->
             _allQuestions.value = questions.shuffled()
             if (questionPool.isEmpty()) {
-                questionPool = questions.toMutableList()
+                questionPool = questions.shuffled().toMutableList()
             }
         }
     }
@@ -41,7 +41,7 @@ class QuizRepository @Inject constructor(
 
     fun generateQuizSession(): List<Question> {
         if (questionPool.size < Constants.QUESTION_COUNT) {
-            questionPool = _allQuestions.value.toMutableList()
+            questionPool = _allQuestions.value.shuffled().toMutableList()
         }
         val selected = mutableListOf<Question>()
         repeat(minOf(Constants.QUESTION_COUNT, questionPool.size)) {
