@@ -52,10 +52,8 @@ fun AnswersScreen(
     LaunchedEffect(Unit) {
         vm.effects.collect { effect ->
             when (effect) {
-                AnswersEffect.ShowInterstitialAd -> onShowInterstitial()
-                AnswersEffect.NavigateToResult -> navController.navigate(Screen.Result.route) {
-                    popUpTo(Screen.Result.route) { inclusive = true }
-                }
+                AnswersEffect.ShowInterstitialAd -> if (!isAdFree) onShowInterstitial()
+                AnswersEffect.NavigateToResult -> navController.popBackStack()
             }
         }
     }

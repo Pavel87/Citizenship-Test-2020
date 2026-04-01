@@ -1,11 +1,14 @@
 package com.pacmac.citizenship.canada.ui.result
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.scaleIn
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.PlayCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -47,6 +51,7 @@ import com.pacmac.citizenship.canada.R
 import com.pacmac.citizenship.canada.ui.components.BannerAdView
 import com.pacmac.citizenship.canada.ui.navigation.Screen
 import com.pacmac.citizenship.canada.util.Constants
+import kotlinx.coroutines.delay
 
 @Composable
 fun ResultScreen(
@@ -77,7 +82,8 @@ fun ResultScreen(
         isAdFree = isAdFree,
         onTryAgain = vm::onTryAgain,
         onViewAnswers = vm::onViewAnswers,
-        onWatchAdForAnswers = vm::onWatchAdForAnswers
+        onWatchAdForAnswers = vm::onWatchAdForAnswers,
+        onAnimationComplete = vm::markAnimated
     )
 }
 
@@ -87,31 +93,57 @@ fun ResultContent(
     isAdFree: Boolean,
     onTryAgain: () -> Unit,
     onViewAnswers: () -> Unit,
-    onWatchAdForAnswers: () -> Unit
+    onWatchAdForAnswers: () -> Unit,
+    onAnimationComplete: () -> Unit
 ) {
-    var iconVisible by remember { mutableStateOf(false) }
-    var animTarget by remember { mutableIntStateOf(0) }
+    // On return from Answers (hasAnimated = true) all start at their final values — no animation
+    var colorRevealed by remember { mutableStateOf(state.hasAnimated) }
+    var scoreTarget by remember { mutableIntStateOf(if (state.hasAnimated) state.correctCount else 0) }
+    var successRateTarget by remember { mutableIntStateOf(if (state.hasAnimated) state.successRatePercent else 0) }
 
-    LaunchedEffect(state.correctCount) {
-        iconVisible = true
-        animTarget = state.correctCount
+    LaunchedEffect(Unit) {
+        if (state.hasAnimated) return@LaunchedEffect
+        delay(300)
+        scoreTarget = state.correctCount            // score count-up starts
+        delay(1400)                                 // score tween is 1200ms + small pause
+        colorRevealed = true
+        successRateTarget = state.successRatePercent // success rate counts up at reveal
+        onAnimationComplete()
     }
 
     val animatedScore by animateIntAsState(
-        targetValue = animTarget,
-        animationSpec = tween(durationMillis = 800),
+        targetValue = scoreTarget,
+        animationSpec = tween(durationMillis = 1200, easing = FastOutSlowInEasing),
         label = "score"
     )
 
-    val resultColor = if (state.isPassed)
-        MaterialTheme.colorScheme.tertiaryContainer
-    else
-        MaterialTheme.colorScheme.errorContainer
+    val animatedSuccessRate by animateIntAsState(
+        targetValue = successRateTarget,
+        animationSpec = tween(durationMillis = 800, easing = FastOutSlowInEasing),
+        label = "successRate"
+    )
 
-    val onResultColor = if (state.isPassed)
-        MaterialTheme.colorScheme.onTertiaryContainer
-    else
-        MaterialTheme.colorScheme.onErrorContainer
+    val cardColor by animateColorAsState(
+        targetValue = if (colorRevealed) {
+            if (state.isPassed) MaterialTheme.colorScheme.tertiaryContainer
+            else MaterialTheme.colorScheme.errorContainer
+        } else {
+            MaterialTheme.colorScheme.surfaceVariant
+        },
+        animationSpec = tween(500),
+        label = "cardColor"
+    )
+
+    val onCardColor by animateColorAsState(
+        targetValue = if (colorRevealed) {
+            if (state.isPassed) MaterialTheme.colorScheme.onTertiaryContainer
+            else MaterialTheme.colorScheme.onErrorContainer
+        } else {
+            MaterialTheme.colorScheme.onSurfaceVariant
+        },
+        animationSpec = tween(500),
+        label = "onCardColor"
+    )
 
     Scaffold(
         bottomBar = {
@@ -128,8 +160,9 @@ fun ResultContent(
                 .padding(padding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Card — fixed height, color and icon animate at reveal
             Surface(
-                color = resultColor,
+                color = cardColor,
                 shape = RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -138,34 +171,60 @@ fun ResultContent(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    AnimatedVisibility(
-                        visible = iconVisible,
-                        enter = scaleIn()
-                    ) {
+                    // Placeholder icon swaps to pass/fail icon at reveal
+                    AnimatedContent(
+                        targetState = colorRevealed,
+                        transitionSpec = { fadeIn(tween(400)) togetherWith fadeOut(tween(200)) },
+                        label = "resultIcon"
+                    ) { revealed ->
                         Icon(
-                            imageVector = if (state.isPassed) Icons.Filled.CheckCircle else Icons.Filled.Cancel,
+                            imageVector = when {
+                                !revealed -> Icons.Outlined.Info
+                                state.isPassed -> Icons.Filled.CheckCircle
+                                else -> Icons.Filled.Cancel
+                            },
                             contentDescription = null,
-                            tint = onResultColor,
+                            tint = onCardColor,
                             modifier = Modifier.size(64.dp)
                         )
                     }
-                    Text(
-                        text = if (state.isPassed) "Congratulations!" else "Not Passed",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = onResultColor
-                    )
+                    AnimatedContent(
+                        targetState = colorRevealed,
+                        transitionSpec = { fadeIn(tween(400)) togetherWith fadeOut(tween(200)) },
+                        label = "resultTitle"
+                    ) { revealed ->
+                        Text(
+                            text = if (revealed) {
+                                if (state.isPassed) "Congratulations!" else "Not Passed"
+                            } else {
+                                "Calculating..."
+                            },
+                            style = MaterialTheme.typography.headlineMedium,
+                            color = onCardColor
+                        )
+                    }
                     Text(
                         text = "$animatedScore / ${Constants.QUESTION_COUNT}",
                         style = MaterialTheme.typography.displayMedium,
-                        color = onResultColor
+                        color = onCardColor
                     )
-                    Text(
-                        text = if (state.isPassed) "You passed the test!"
-                        else "You need ${Constants.SUCCESS_ANSWER_COUNT} correct answers to pass.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = onResultColor,
-                        textAlign = TextAlign.Center
-                    )
+                    AnimatedContent(
+                        targetState = colorRevealed,
+                        transitionSpec = { fadeIn(tween(400)) togetherWith fadeOut(tween(200)) },
+                        label = "resultSubtitle"
+                    ) { revealed ->
+                        Text(
+                            text = if (revealed) {
+                                if (state.isPassed) "You passed the test!"
+                                else "You need ${Constants.SUCCESS_ANSWER_COUNT} correct answers to pass."
+                            } else {
+                                "Please wait..."
+                            },
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = onCardColor,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
 
@@ -173,7 +232,7 @@ fun ResultContent(
 
             if (state.successRatePercent > 0) {
                 Text(
-                    text = "Your average success rate: ${state.successRatePercent}%",
+                    text = "Your average success rate: $animatedSuccessRate%",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -206,7 +265,10 @@ fun ResultContent(
                 Spacer(Modifier.height(8.dp))
                 TextButton(
                     onClick = onWatchAdForAnswers,
-                    modifier = Modifier.padding(horizontal = 24.dp)
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    colors = ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.PlayCircle,

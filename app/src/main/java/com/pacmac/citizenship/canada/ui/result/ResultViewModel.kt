@@ -35,6 +35,9 @@ class ResultViewModel @Inject constructor(
                 successRatePercent = rate.averagePercent
             )
         }
+        // TODO: show in-app notification/banner when rate.averagePercent >= 95 to tell
+        //  the user they are ready for the real citizenship test (requires enough sessions
+        //  to be statistically meaningful — consider gating on rate.completedCounter >= 3)
     }
 
     fun onTryAgain() {
@@ -51,5 +54,9 @@ class ResultViewModel @Inject constructor(
 
     fun onFreeAnswersUnlocked() {
         viewModelScope.launch { _effects.send(ResultEffect.NavigateToAnswersFree) }
+    }
+
+    fun markAnimated() {
+        _state.update { it.copy(hasAnimated = true) }
     }
 }

@@ -4,7 +4,8 @@ data class ResultState(
     val correctCount: Int = 0,
     val isPassed: Boolean = false,
     val successRatePercent: Int = 0,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val hasAnimated: Boolean = false
 )
 
 sealed class ResultEffect {
